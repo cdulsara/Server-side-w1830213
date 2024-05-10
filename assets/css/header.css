@@ -1,0 +1,62 @@
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 3px;
+    border-color: #123513;
+    border-style: solid;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+  }
+
+  .hed{
+    flex-direction: column;
+  }
+
+  .hedtop1{
+    color: rgba(0, 0, 0, 0.822);
+  }
+  
+  .headtop2{
+    color: red;
+    text-align: left;
+  }
+
+  .logo {
+    height: 80px;
+  }
+ 
+  .navigation {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: #123513;
+    margin-right: 70px;
+  }
+  
+  .logout-button {
+    background: white;
+    border: 2px;
+    border-color: black;
+    border-radius: 10px;
+    border-style: solid;
+    color: black;
+    padding: 10px 20px 10px 20px;
+    margin-left: 30px;
+    cursor: pointer;
+  }
+  .logout-button2 {
+    background: rgb(235, 64, 64);
+    border: 2px;
+    border-color: rgb(235, 64, 64);
+    border-radius: 10px;
+    border-style: solid;
+    color: black;
+    padding: 10px 20px 10px 20px;
+    margin-left: 30px;
+    cursor: pointer;
+  }
+  

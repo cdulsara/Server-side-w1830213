@@ -1,0 +1,45 @@
+a {
+  text-decoration: none;
+  color: #4F4F4F;
+  /* font-size: 12px; */
+}
+
+a:hover .fa-arrow-up {
+  color: #ff8b60; 
+}
+
+a:hover .fa-arrow-down {
+  color: #9494FF; 
+}
+
+a .fa-arrow-up {
+    color: black; 
+}
+  
+a .fa-arrow-down {
+    color: #1861ff; 
+}
+
+a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px;
+  transition: color 0.3s;
+}
+
+span {
+  margin-left: 8px; 
+}
+
+.upvote-group, .downvote-group {
+    border: 1px solid #ddd;
+    border-radius: 200px;
+    padding: 5px 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin-right: 8px;
+    transition: all 0.3s ease;
+  }

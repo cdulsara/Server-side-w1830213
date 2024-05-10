@@ -1,0 +1,194 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+hr{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: rgb(235, 64, 64);
+}
+
+header {
+  padding: 0px 20px 0px 0px;
+  text-align: center;
+}
+
+.home-view-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+}
+
+#sortQuestions{
+  border: 2px;
+  border-color: black;
+  border-radius: 10px;
+  border-style: solid;
+}
+
+.home-view-top select,
+.home-view-top input[type="text"],
+.home-view-top button {
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.home-view-top button {
+  background: white;
+  border: 2px;
+  border-color: black;
+  border-radius: 10px;
+  border-style: solid;
+  color: black;
+  cursor: pointer;
+}
+
+.searchBut{
+  background-color: #4CAF50;
+  float: right;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.search_query{
+  background: white;
+  width: 600px;
+  border: 2px;
+  border-color: black;
+  border-radius: 10px;
+  border-style: solid;
+}
+
+.mid{
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.question-card {
+  background-color: #fff;
+  border: 3px;
+  border-color: rgba(235, 64, 64, 0.241);
+  border-style: solid;
+  padding: 10px;
+  margin: 20px 60px 10px 60px;
+  border-radius: 5px;
+}
+
+.question-card-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.question-card a {
+  text-decoration: none;
+  color: #333;
+}
+
+.upvote-group, .downvote-group {
+  margin-right: 10px;
+}
+
+.question-card-vote i {
+  margin-right: 5px;
+}
+
+.upvote, .downvote {
+  cursor: pointer;
+  color: #333;
+}
+
+.upvote:hover, .downvote:hover {
+  color: #4CAF50;
+}
+
+.question-card-views {
+  font-size: 12px;
+}
+
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .home-view-top {
+      flex-direction: column;
+  }
+
+  .home-view-top select,
+  .home-view-top input[type="text"],
+  .home-view-top button {
+      margin-bottom: 10px;
+  }
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  border: 2px;
+  border-color: black;
+  border-radius: 10px;
+  border-style: solid;
+
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fefefe;
+  margin: 15% auto; 
+  width: 70%; /* Could be more or less, depending on screen size */
+}
+
+.modal-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.ask{
+  text-align: left;
+  text-size-adjust: 10px;
+}
+
+.askHere{
+  margin: 10px;
+  display: flex;
+  align-content: center;
+  width: 94%;
+  padding: 10px;
+  border: 2px;
+  border-color: black;
+  border-radius: 10px;
+  border-style: solid;
+}
+
+.askHereBut{
+  background-color: rgb(235, 64, 64);
+}
+
+.askHed{
+  text-align: center;
+}
