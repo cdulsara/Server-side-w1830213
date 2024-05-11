@@ -1,34 +1,97 @@
-body {
-    font-family: Arial, sans-serif;
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
-form {
+.login-logo h1 {
+    color: black;
+    font-size: 3rem;
+    margin-bottom: 0;
+}
+
+.logo-subtext {
+    color: black;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+
+.logo{
     width: 300px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+
 }
 
-input[type="text"], input[type="email"], input[type="password"] {
+.login-form {
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px black;
+    margin-top: 2rem;
+    width: 300px;
+    border: 2px solid white;
+}
+
+.login-form h2 {
+    color: black;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-group input {
     width: 100%;
-    padding: 8px;
-    margin-top: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    outline: none;
+}
+
+.form-group label {
+    position: absolute;
+    top: -8px;
+    left: 10px;
+    background-color: #f9f9f9;
+    padding: 0 5px;
+    color: black;
+    font-size: 0.8rem;
+}
+
+.forgot-password {
+    text-align: right;
+    margin-bottom: 1.5rem;
+}
+
+.forgot-password a {
+    color: black;
+    text-decoration: none;
+    font-size: 0.8rem;
 }
 
 button {
     width: 100%;
     padding: 10px;
-    background-color: #007BFF;
-    color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
+    background-color: rgb(235, 64, 64);
+    color: white;
     cursor: pointer;
-    margin-top: 12px;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: rgba(235, 64, 64, 0.644);
+}
+
+.signup {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.signup a {
+    color: black;
+    text-decoration: none;
+    font-size: 0.8rem;
 }
