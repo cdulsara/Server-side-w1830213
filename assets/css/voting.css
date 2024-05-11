@@ -43,3 +43,54 @@ span {
     margin-right: 8px;
     transition: all 0.3s ease;
   }
+
+.qDetails{
+  border: 1px solid white;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgb(205, 199, 199); 
+  padding: 20px 50px 20px 50px;
+  margin: 20px;
+}
+
+.comments{
+  border: 1px solid white;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgb(205, 199, 199); 
+  padding: 10px;
+  margin: 10px;
+}
+
+.deleteCom{
+  float: right;
+  margin-right: 20px;
+}
+
+i:hover{
+  color: rgb(235, 64, 64);
+}
+
+.commentForm{
+  justify-content:space-between;
+  align-content: center;
+}
+.commentForm textarea{
+  width: 100%;
+  padding: 19px;
+  margin-left: 10px;
+  border: 2px solid black;
+}
+
+.commentForm button{
+  padding: 25px;
+  float: right;
+  border: 2px solid black;
+}
+
+.commentForm table ,tr{
+  width:100%;
+}
+.td2{
+  width: 12%;
+}

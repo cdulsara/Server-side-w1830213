@@ -13,13 +13,13 @@
 <body>
 <div class = "mid"><img src="assets/images/logo.jpg" alt="CLONEL Logo" class="logo" /></div>
 <hr>
-    <div class="home-view-top">
+    <div class="pageView">
     <div>
         <select id="sortQuestions" onchange="sortQuestions()">
-            <option value="recent">Most Recent</option>
-            <option value="most_upvotes">Most Upvotes</option>
-            <option value="most_downvotes">Most Downvotes</option>
-            <option value="most_views">Most Views</option>
+            <option value="recent" <?php echo ($sort == 'recent') ? 'selected' : ''; ?>>Most Recent</option>
+            <option value="most_upvotes" <?php echo ($sort == 'most_upvotes') ? 'selected' : ''; ?>>Most Upvotes</option>
+            <option value="most_downvotes" <?php echo ($sort == 'most_downvotes') ? 'selected' : ''; ?>>Most Downvotes</option>
+            <option value="most_views" <?php echo ($sort == 'most_views') ? 'selected' : ''; ?>>Most Views</option>
         </select>
     </div>
     <form class="search-form" action="<?php echo base_url('home'); ?>" method="get">
@@ -29,9 +29,7 @@
     <div class="add-question">
         <?php if ($logged_in): ?>
             <button id="openModal">Ask a Question</button>
-            <!-- Modal -->
             <div id="questionModal" class="modal">
-                
                 <div class="modal-content">
                 <h2 class="askHed">Ask Your Question</h2>
                     <span class="close">&times;</span>
@@ -50,7 +48,7 @@
         <?php endif; ?>
     </div>
     </div>
-        <hr>
+    <hr>
     
     <!-- Button to open modal -->
     <div>
@@ -64,6 +62,21 @@
                 <span class="upvote-group"><a href="#" class="upvote" onclick="upvoteQuestion(<?php echo $question->id; ?>); return false;"><i class="fas fa-thumbs-up"></i></a><span id="upvotes_<?php echo $question->id; ?>"><?php echo $question->upvotes; ?></span></span>
                 <span class="downvote-group"><a href="#" class="downvote" onclick="downvoteQuestion(<?php echo $question->id; ?>); return false;"><i class="fas fa-thumbs-down"></i></a><span id="downvotes_<?php echo $question->id; ?>"><?php echo $question->downvotes; ?></span></span>
             </div>
+            <div id="comments">
+                    <!-- <p><i class="far fa-comment"></i> <?php echo $question->comment_count; ?></p> -->
+                    <p><i class="far fa-comment"></i> <?php echo isset($question->comment_count) ? $question->comment_count : '0'; ?></p>
+
+                    <!-- <?php if (isset($question->comments) && !empty($question->comments)): ?>
+                        <?php $comments = explode("|||", $question->comments); ?>
+                        <?php foreach ($comments as $comment): ?>
+                            <div class="comment">
+                                <p><?php echo htmlspecialchars($comment); ?></p>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p>No comments yet.</p>
+                    <?php endif; ?> -->
+                </div>
             <div class="question-card-views">
             <p>Views: <?php echo $question->view_count; ?></p>
             </div>
@@ -104,6 +117,31 @@
             });
         }
 
+        function postComment(event, formElement) {
+            event.preventDefault(); // Prevent the default form submit action
+            var formData = $(formElement).serialize(); // Serialize the data from the specific form
+
+            $.ajax({
+                url: '<?php echo base_url('question/post_comment'); ?>',
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        var username = "Your Username"; // Assuming you have the username available as discussed previously
+                        var newCommentHtml = '<div class="comment"><p><strong>' + username + ':</strong> ' + $(formElement).find('textarea[name="comment"]').val() + '</p></div>';
+                        $(formElement).closest('.question-card').find('#comments').append(newCommentHtml);
+                        $(formElement).find('textarea[name="comment"]').val(''); // Clear the textarea
+                        alert('Comment posted!');
+                    } else {
+                        alert('Error: ' + (response.error || 'Unknown error'));
+                    }
+                },
+                error: function(xhr) {
+                    alert('Error: ' + xhr.responseText);
+                }
+            });
+        }
 
         function downvoteQuestion(questionId) {
             $.ajax({

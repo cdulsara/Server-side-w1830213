@@ -10,11 +10,10 @@ hr{
 }
 
 header {
-  padding: 0px 20px 0px 0px;
   text-align: center;
 }
 
-.home-view-top {
+.pageView {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,15 +27,15 @@ header {
   border-style: solid;
 }
 
-.home-view-top select,
-.home-view-top input[type="text"],
-.home-view-top button {
+.pageView select,
+.pageView input[type="text"],
+.pageView button {
   padding: 10px;
   border-radius: 5px;
   margin: 10px;
 }
 
-.home-view-top button {
+.pageView button {
   background: white;
   border: 2px;
   border-color: black;
@@ -74,13 +73,17 @@ header {
 }
 
 .question-card {
-  background-color: #fff;
-  border: 3px;
-  border-color: rgba(235, 64, 64, 0.241);
-  border-style: solid;
-  padding: 10px;
+  padding: 20px;
   margin: 20px 60px 10px 60px;
   border-radius: 5px;
+  border: 1px solid white;
+  background-color: white;
+  box-shadow: 0 4px 8px rgb(205, 199, 199);
+}
+
+.question-card:hover{
+  transform: translateY(-5px);
+  border-color: rgb(235, 64, 64);
 }
 
 .question-card-title {
@@ -117,13 +120,13 @@ header {
 
 /* Mobile responsiveness */
 @media (max-width: 600px) {
-  .home-view-top {
+  .pageView {
       flex-direction: column;
   }
 
-  .home-view-top select,
-  .home-view-top input[type="text"],
-  .home-view-top button {
+  .pageView select,
+  .pageView input[type="text"],
+  .pageView button {
       margin-bottom: 10px;
   }
 }
