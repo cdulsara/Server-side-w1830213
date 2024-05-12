@@ -1,7 +1,9 @@
+body{
+  margin: 0px;
+}
 a {
   text-decoration: none;
   color: #4F4F4F;
-  /* font-size: 12px; */
 }
 
 a:hover .fa-arrow-up {
@@ -18,6 +20,13 @@ a .fa-arrow-up {
   
 a .fa-arrow-down {
     color: #1861ff; 
+}
+
+.mid{
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 a {

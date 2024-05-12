@@ -9,14 +9,13 @@
     <title>Question Details</title>
 </head>
 <body>
-    <!-- <h1>Question Details</h1> -->
+<div class = "mid"><img src="<?php echo base_url('assets/images/logo.jpg');?>" alt="CLONEL Logo" class="logo" /></div>
     <div class='qDetails'>
     <h2><?php echo $question->title; ?></h2>
-    <p><i class="fas fa-at"></i><?php echo $question->username; ?></p>
-    <p><i class="fas fa-calendar"></i> <?php echo date('F j, Y', strtotime($question->created_at)); ?></p>
+    <p><i class="fas fa-user"></i> <?php echo $question->username; ?></p>
+    <p><i class="fas fa-calendar"> </i> <?php echo date('F j, Y', strtotime($question->created_at)); ?></p>
     <p><i class="far fa-eye"></i> <?php echo $question->view_count; ?></p>
     <p><?php echo $question->description; ?></p>
-    <!-- <h3>Comments: <p><i class="far fa-comment"></i> <?php echo $question->comment_count; ?></p></h3> -->
     <h3>Comments: <span id="comment_count"><?= $comment_count; ?></span></h3>
     <span class="upvote-group <?= $question->user_vote == 'up' ? 'active' : '' ?>" id="upvote_group_<?= $question->id; ?>">
         <a href="#" class="upvote" onclick="upvoteQuestion(<?= $question->id; ?>); return false;">
@@ -50,12 +49,6 @@
     <div id="comments">
         <?php if (!empty($comments)): ?>
             <?php foreach ($comments as $comment): ?>
-                <!-- <div class="comment">
-                    <p><span style="font-weight: 700;"><?php echo $comment->username; ?> : </span><span><?php echo htmlspecialchars($comment->comment); ?></span></p>
-                    <?php if ($comment->user_id == $this->session->userdata('user_id')): ?>
-                        <button onclick="deleteComment(<?= $comment->id; ?>)">Delete</button>
-                    <?php endif; ?>
-                </div> -->
                 <div class='comments' id="comment_<?= $comment->id ?>" class="comment">
                 <p><span style="font-weight: 700;"><?php echo $comment->username; ?> : </span><span><?php echo htmlspecialchars($comment->comment); ?></span><span class='deleteCom'><?php if ($comment->user_id == $this->session->userdata('user_id')): ?>
                         <i class="fas fa-trash" onclick="deleteComment(<?= $comment->id; ?>)">Delete</i>
@@ -68,7 +61,6 @@
         <?php endif; ?>
     </div>
 
-<!-- Add comment form -->
 
      
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -128,7 +120,6 @@ function downvoteQuestion(questionId) {
             dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    // Reload the page or update comments dynamically
                     location.reload();
                 } else {
                     alert('Error: ' + (response.error || 'Unknown error'));
@@ -143,7 +134,7 @@ function downvoteQuestion(questionId) {
 
 function deleteComment(commentId) {
         if (!confirm('Are you sure you want to delete this comment?')) {
-        return; // Stop if the user cancels the deletion.
+        return;
     }
     $.ajax({
         url: '<?= base_url("question/delete_comment/"); ?>' + commentId,
@@ -151,10 +142,8 @@ function deleteComment(commentId) {
         dataType: 'json',
         success: function(response) {
             if (response.success) {
-                // Remove the comment from the DOM
                 $('#comment_' + commentId).remove();
-                // Update the comment count display for the associated question
-                $('#comment_count').text(response.new_comment_count);  // Correctly target the element with ID 'comment_count'
+                $('#comment_count').text(response.new_comment_count); 
             } else {
                 alert('Failed to delete comment: ' + response.message);
             }
@@ -164,9 +153,6 @@ function deleteComment(commentId) {
         }
     });
 }
-
-
-
 
 </script>
 </body>

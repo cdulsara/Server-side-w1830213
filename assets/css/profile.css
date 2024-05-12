@@ -75,6 +75,13 @@ body{
     text-align: center;
 }
 
+.mid{
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
 .dataEdit{
     margin-top: 20px;
     display: grid;

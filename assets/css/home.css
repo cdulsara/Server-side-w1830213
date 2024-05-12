@@ -117,8 +117,6 @@ header {
   font-size: 12px;
 }
 
-
-/* Mobile responsiveness */
 @media (max-width: 600px) {
   .pageView {
       flex-direction: column;
@@ -131,19 +129,18 @@ header {
   }
 }
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4); 
 }
 
-/* Modal Content/Box */
 .modal-content {
   border: 2px;
   border-color: black;
@@ -155,7 +152,7 @@ header {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   background-color: #fefefe;
   margin: 15% auto; 
-  width: 70%; /* Could be more or less, depending on screen size */
+  width: 70%; 
 }
 
 .modal-content:hover {
@@ -163,7 +160,6 @@ header {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* The Close Button */
 .close {
   color: white;
   float: right;

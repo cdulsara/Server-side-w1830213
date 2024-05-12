@@ -33,7 +33,7 @@
                     </div>
                     <button type="submit">Login</button>
                     <div class="signup">
-                        <a href ="application\views\signup.php">Not Registerd Yet? Sign Up Here</a>
+                        <a href ="<?php echo base_url('signup'); ?>">Not Registerd Yet? Sign Up Here</a>
                     </div>
                 </form>
             </div>

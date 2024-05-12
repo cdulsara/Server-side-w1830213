@@ -7,12 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/voting.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/profile.css'); ?>">
-    <!-- <form id="editProfileForm" action="<?php echo base_url('user/update_profile'); ?>" method="post" style="display:none;"> -->
     <?php $this->load->view('header', ['title' => 'Home Page']); ?>
     
 </head>
 <body>
-    <div class = "mid"><img src="assets/images/logo.jpg" alt="CLONEL" class="logo" /></div>
+    <div class = "mid"><img src="<?php echo base_url('assets/images/logo.jpg');?>" alt="CLONEL Logo" class="logo" /></div>
     <hr>
     <h2 class="askHed">User Profile</h2>
     <div class="tab">
@@ -21,7 +20,6 @@
     </div>
 
     <div id="ProfileDetails" class="tabcontent">
-        <!-- Display Flash Messages -->
         <?php if ($this->session->flashdata('error')): ?>
             <p class="flash-message" style="color: red;"><?php echo $this->session->flashdata('error'); ?></p>
         <?php endif; ?>
@@ -65,7 +63,6 @@
         </div>
         <div class="dataEdit">
         <form id="editProfileForm" action="<?php echo base_url('user/update_profile'); ?>" method="post" style="display:none;">
-        <!-- Adding fields for username and email in the edit form -->
         <table class="tableEdit">
             <tr>
                 <td>
@@ -120,7 +117,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
-            setTimeout(clearMessages, 10000); // Clear messages after 10 seconds
+            setTimeout(clearMessages, 10000); 
         });
 
         function openTab(evt, tabName) {
@@ -135,9 +132,6 @@
             }
             document.getElementById(tabName).style.display = "block";
             evt.currentTarget.className += " active";
-
-            // Clear messages when tab is switched
-            // clearMessages();
         }
 
         function clearMessages() {
@@ -146,8 +140,6 @@
                 msg.style.display = 'none';
             });
         }
-
-        // Set the default tab
         document.getElementsByClassName('tablinks')[0].click();
 
         function toggleEditForm() {
@@ -158,7 +150,6 @@
                 form.style.display = 'none';
             }
         }
-
     </script>
 </body>
 </html>

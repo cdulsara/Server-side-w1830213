@@ -7,11 +7,10 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/css/home.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/voting.css'); ?>">
     <title>Home Page</title>
-    <!-- <a href="<?php echo base_url('auth/logout'); ?>">Logout</a> -->
     <?php $this->load->view('header', ['title' => 'Home Page']); ?>
 </head>
 <body>
-<div class = "mid"><img src="assets/images/logo.jpg" alt="CLONEL Logo" class="logo" /></div>
+<div class = "mid"><img src="<?php echo base_url('assets/images/logo.jpg');?>" alt="CLONEL Logo" class="logo" /></div>
 <hr>
     <div class="pageView">
     <div>
@@ -28,29 +27,28 @@
     </form>
     <div class="add-question">
         <?php if ($logged_in): ?>
-            <button id="openModal">Ask a Question</button>
+            <button class="add-question" id="openModal">Ask a Question</button>
             <div id="questionModal" class="modal">
                 <div class="modal-content">
                 <h2 class="askHed">Ask Your Question</h2>
                     <span class="close">&times;</span>
-                    <form action="<?php echo base_url('question/add'); ?>" method="post">
-                        <label class="ask" for="title">Question Title:</label><br>
+                    <form id="questionForm">
+                    <label class="ask" for="title">Question Title:</label><br>
                         <input class="askHere" type="text" id="title" name="title" required><br>
                         <label class="ask" for="description">Question Description:</label><br>
                         <textarea class="askHere" id="description" name="description" rows="4" required></textarea><br>
                         <button class="askHereBut" type="submit">Submit</button>
                     </form>
+
                 </div>
             </div>
         <?php else: ?>
-            <!-- Prompt to Log In -->
             <p>Please <a href="<?php echo base_url('login'); ?>">login</a> to post a question.</p>
         <?php endif; ?>
     </div>
     </div>
     <hr>
     
-    <!-- Button to open modal -->
     <div>
     <?php if ($logged_in): ?>
         <?php foreach($questions as $question): ?>
@@ -63,19 +61,8 @@
                 <span class="downvote-group"><a href="#" class="downvote" onclick="downvoteQuestion(<?php echo $question->id; ?>); return false;"><i class="fas fa-thumbs-down"></i></a><span id="downvotes_<?php echo $question->id; ?>"><?php echo $question->downvotes; ?></span></span>
             </div>
             <div id="comments">
-                    <!-- <p><i class="far fa-comment"></i> <?php echo $question->comment_count; ?></p> -->
+                    <?php echo $question->comment_count; ?></p>
                     <p><i class="far fa-comment"></i> <?php echo isset($question->comment_count) ? $question->comment_count : '0'; ?></p>
-
-                    <!-- <?php if (isset($question->comments) && !empty($question->comments)): ?>
-                        <?php $comments = explode("|||", $question->comments); ?>
-                        <?php foreach ($comments as $comment): ?>
-                            <div class="comment">
-                                <p><?php echo htmlspecialchars($comment); ?></p>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <p>No comments yet.</p>
-                    <?php endif; ?> -->
                 </div>
             <div class="question-card-views">
             <p>Views: <?php echo $question->view_count; ?></p>
@@ -112,14 +99,61 @@
                     }
                 },
                 error: function(xhr, status, error) {
-                    alert('Error: ' + xhr.responseText); // This will show more detailed error
+                    alert('Error: ' + xhr.responseText); 
                 }
             });
         }
 
+        $(document).ready(function() {
+        $('#questionForm').submit(function(e) {
+        e.preventDefault();
+        var formData = $(this).serialize();
+
+        $.ajax({
+            url: '<?= base_url("api/post_question"); ?>',
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    alert('Question added successfully');
+                    document.getElementById('questionModal').style.display = 'none';
+                    window.location.reload();
+                    $('#questionForm')[0].reset(); 
+                } else {
+                    alert('Error: ' + response.error);
+                }
+            },
+            error: function(xhr, status, error) {
+                alert('Failed to submit question. Please try again.');
+            }
+        });
+    });
+
+    var modal = document.getElementById('questionModal');
+    var btn = document.getElementById('openModal');
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+    };
+
+    span.onclick = function() {
+        modal.style.display = "none";
+        $('#questionForm')[0].reset();
+    };
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            $('#questionForm')[0].reset();
+        }
+    };
+});
+
         function postComment(event, formElement) {
-            event.preventDefault(); // Prevent the default form submit action
-            var formData = $(formElement).serialize(); // Serialize the data from the specific form
+            event.preventDefault(); 
+            var formData = $(formElement).serialize(); 
 
             $.ajax({
                 url: '<?php echo base_url('question/post_comment'); ?>',
@@ -128,10 +162,10 @@
                 dataType: 'json',
                 success: function(response) {
                     if (response.success) {
-                        var username = "Your Username"; // Assuming you have the username available as discussed previously
+                        var username = "Your Username"; 
                         var newCommentHtml = '<div class="comment"><p><strong>' + username + ':</strong> ' + $(formElement).find('textarea[name="comment"]').val() + '</p></div>';
                         $(formElement).closest('.question-card').find('#comments').append(newCommentHtml);
-                        $(formElement).find('textarea[name="comment"]').val(''); // Clear the textarea
+                        $(formElement).find('textarea[name="comment"]').val(''); 
                         alert('Comment posted!');
                     } else {
                         alert('Error: ' + (response.error || 'Unknown error'));
@@ -146,7 +180,7 @@
         function downvoteQuestion(questionId) {
             $.ajax({
                 url: '<?php echo base_url('question/downvote/'); ?>' + questionId,
-                type: 'POST', // Change to POST for better security
+                type: 'POST', 
                 dataType: 'json',
                 success: function(response) {
                     if (response.error) {
@@ -164,26 +198,15 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Get the modal
             var modal = document.getElementById('questionModal');
-
-            // Get the button that opens the modal
             var btn = document.getElementById('openModal');
-
-            // Get the <span> element that closes the modal
             var span = document.getElementsByClassName("close")[0];
-
-            // When the user clicks the button, open the modal 
             btn.onclick = function() {
                 modal.style.display = "block";
             }
-
-            // When the user clicks on <span> (x), close the modal
             span.onclick = function() {
                 modal.style.display = "none";
             }
-
-            // When the user clicks anywhere outside of the modal, close it
             window.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = "none";

@@ -34,7 +34,9 @@
                     </div>
                     <button type="submit">Sign up</button>
                     <div class="signup">
-                        
+                    <div class="signup">
+                    <a href ="<?php echo base_url('login'); ?>">Already Have a Account? Sign In Here</a>
+                    </div>  
                     </div>
                 </form>
             </div>
