@@ -5,18 +5,11 @@ class User extends CI_Controller {
 public function __construct() {
     parent::__construct();
     $this->load->model('User_model');
-    // Ensure user is logged in
     if (!$this->session->userdata('logged_in')) {
         redirect('auth/login');
     }
 }
 
-// public function profile() {
-//     $user_id = $this->session->userdata('user_id');
-//     $data['user'] = $this->User_model->get_user_by_id($user_id);
-//     $data['questions'] = $this->User_model->get_questions_by_user($user_id); // Fetch user questions
-//     $this->load->view('profile_view', $data);
-// }
 
 public function profile($user_id = null) {
     if (!$user_id) {
@@ -24,9 +17,7 @@ public function profile($user_id = null) {
     }
 
     $data['user'] = $this->User_model->get_user_by_id($user_id);
-    $data['questions'] = $this->User_model->get_questions_by_user($user_id); // Fetch questions by user
-
-    // Check if the profile belongs to the logged-in user
+    $data['questions'] = $this->User_model->get_questions_by_user($user_id);
     $data['is_own_profile'] = ($user_id == $this->session->userdata('user_id'));
 
     $this->load->view('profile_view', $data);
@@ -37,8 +28,7 @@ public function update_profile() {
     $user_id = $this->session->userdata('user_id');
     $new_username = $this->input->post('username');
     $new_email = $this->input->post('email');
-    
-    // Check if username or email already exists
+
     if ($this->User_model->username_exists($new_username, $user_id)) {
         $this->session->set_flashdata('error', 'Username already taken.');
         redirect('user/profile');
@@ -64,3 +54,6 @@ public function update_profile() {
 }
 
 }
+
+
+

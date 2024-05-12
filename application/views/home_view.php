@@ -61,7 +61,6 @@
                 <span class="downvote-group"><a href="#" class="downvote" onclick="downvoteQuestion(<?php echo $question->id; ?>); return false;"><i class="fas fa-thumbs-down"></i></a><span id="downvotes_<?php echo $question->id; ?>"><?php echo $question->downvotes; ?></span></span>
             </div>
             <div id="comments">
-                    <?php echo $question->comment_count; ?></p>
                     <p><i class="far fa-comment"></i> <?php echo isset($question->comment_count) ? $question->comment_count : '0'; ?></p>
                 </div>
             <div class="question-card-views">

@@ -45,11 +45,6 @@ header {
   cursor: pointer;
 }
 
-.searchBut{
-  background-color: #4CAF50;
-  float: right;
-}
-
 .search-form {
   display: flex;
   align-items: center;
